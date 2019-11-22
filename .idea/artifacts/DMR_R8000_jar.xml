@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DMR_R8000:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DMR_R8000_jar</output-path>
+    <root id="archive" name="DMR_R8000.jar">
+      <element id="module-output" name="DMR_R8000" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_dmr_r8000" default="compile.module.dmr_r8000">
+  <dirname property="module.dmr_r8000.basedir" file="${ant.file.module_dmr_r8000}"/>
+  
+  <property name="module.jdk.home.dmr_r8000" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.dmr_r8000" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.dmr_r8000" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.dmr_r8000" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="dmr_r8000.output.dir" value="${module.dmr_r8000.basedir}/out/production/DMR_R8000"/>
+  <property name="dmr_r8000.testoutput.dir" value="${module.dmr_r8000.basedir}/out/test/DMR_R8000"/>
+  
+  <path id="dmr_r8000.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="dmr_r8000.module.production.classpath">
+    <path refid="${module.jdk.classpath.dmr_r8000}"/>
+  </path>
+  
+  <path id="dmr_r8000.runtime.production.module.classpath">
+    <pathelement location="${dmr_r8000.output.dir}"/>
+  </path>
+  
+  <path id="dmr_r8000.module.classpath">
+    <path refid="${module.jdk.classpath.dmr_r8000}"/>
+    <pathelement location="${dmr_r8000.output.dir}"/>
+  </path>
+  
+  <path id="dmr_r8000.runtime.module.classpath">
+    <pathelement location="${dmr_r8000.testoutput.dir}"/>
+    <pathelement location="${dmr_r8000.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.dmr_r8000">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.dmr_r8000">
+    <patternset refid="excluded.from.module.dmr_r8000"/>
+  </patternset>
+  
+  <path id="dmr_r8000.module.sourcepath">
+    <dirset dir="${module.dmr_r8000.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.dmr_r8000" depends="compile.module.dmr_r8000.production,compile.module.dmr_r8000.tests" description="Compile module DMR_R8000"/>
+  
+  <target name="compile.module.dmr_r8000.production" depends="register.custom.compilers" description="Compile module DMR_R8000; production classes">
+    <mkdir dir="${dmr_r8000.output.dir}"/>
+    <javac2 destdir="${dmr_r8000.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.dmr_r8000}/javac">
+      <compilerarg line="${compiler.args.dmr_r8000}"/>
+      <bootclasspath refid="dmr_r8000.module.bootclasspath"/>
+      <classpath refid="dmr_r8000.module.production.classpath"/>
+      <src refid="dmr_r8000.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.dmr_r8000"/>
+    </javac2>
+    
+    <copy todir="${dmr_r8000.output.dir}">
+      <fileset dir="${module.dmr_r8000.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.dmr_r8000.tests" depends="register.custom.compilers,compile.module.dmr_r8000.production" description="compile module DMR_R8000; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.dmr_r8000" description="cleanup module">
+    <delete dir="${dmr_r8000.output.dir}"/>
+    <delete dir="${dmr_r8000.testoutput.dir}"/>
+  </target>
+</project>

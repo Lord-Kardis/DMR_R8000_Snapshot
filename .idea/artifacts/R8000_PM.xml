@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="R8000_PM">
+    <output-path>$PROJECT_DIR$/out/artifacts/R8000_PM</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="R8000_DMR.Main" />
+        <option name="description" value="" />
+        <option name="height" value="800" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="0.05" />
+        <option name="width" value="1100" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="JavaFXApp.jar">
+        <element id="module-output" name="DMR_R8000" />
+      </element>
+    </root>
+  </artifact>
+</component>
